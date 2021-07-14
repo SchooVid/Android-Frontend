@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Schoovid-App</string>
+    <string name="signup">Signup</string>
+    <string name="createAccount">Create an account</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_courses">Courses</string>
+    <string name="nav_stream">Stream</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
