@@ -25,6 +25,10 @@
             android:label="@string/signup"/>
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".ListCourse"
+            android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".InfoCourse"
+            android:theme="@style/Theme.AppCompat.Light"/>
     </application>
 
 </manifest>
