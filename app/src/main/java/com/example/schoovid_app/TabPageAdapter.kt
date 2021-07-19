@@ -7,7 +7,7 @@ import com.example.schoovid_app.Fragment.CalendarFragment
 import com.example.schoovid_app.Fragment.CourseFragment
 import com.example.schoovid_app.Fragment.HomeFragment
 
-class TabPageAdapter(activity: FragmentActivity, private val tabCount: Int) : FragmentStateAdapter(activity) {
+class TabPageAdapter(activity: FragmentActivity, private val tabCount: Int, val userId: String) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int = tabCount
 
@@ -16,10 +16,10 @@ class TabPageAdapter(activity: FragmentActivity, private val tabCount: Int) : Fr
 
         return when(position){
 
-            0 -> HomeFragment()
+            0 -> HomeFragment(userId)
             1 -> CalendarFragment()
             2 -> CourseFragment()
-            else -> HomeFragment()
+            else -> HomeFragment(userId)
 
         }
 

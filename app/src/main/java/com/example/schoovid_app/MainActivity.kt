@@ -2,6 +2,7 @@ package com.example.schoovid_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +18,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpTabBar() {
 
-        val adapter = TabPageAdapter(this, tabLayout.tabCount)
+        val userId = intent.getStringExtra("idUser")
+        val adapter = userId?.let { TabPageAdapter(this, tabLayout.tabCount, it) }
         viewPager.adapter = adapter
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName
 
 class SignInRequest {
 
+    @SerializedName("id")
+    @Expose
+    var id:String? = null
+
     @SerializedName("username")
     @Expose
     var username:String? = null
@@ -14,3 +18,11 @@ class SignInRequest {
     var password:String? = null
 
 }
+
+/*
+{
+    companion object{
+        val info: MyDataItem? = null
+    }
+}
+ */

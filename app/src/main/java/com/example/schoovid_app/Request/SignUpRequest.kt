@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName
 
 class SignUpRequest {
 
+    @SerializedName("id")
+    @Expose
+    var id:String? = null
+
     @SerializedName("username")
     @Expose
     var username:String? = null
