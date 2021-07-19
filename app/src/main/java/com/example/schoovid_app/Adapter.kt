@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.callapi.MyDataItem
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 
 class PostAdapter(val myDataItem: MutableList<MyDataItem>, var clickListener: onCourseItemClickListener): RecyclerView.Adapter<Adapter>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter {
@@ -42,7 +44,8 @@ class Adapter(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindView(myDataItem: MyDataItem){
 
         courseName.text = myDataItem.libelle
-        teacherName.text = myDataItem.description
+        //teacherName.text = myDataItem.description
+        teacherName.text = myDataItem.firstnameTeacher + " " + myDataItem.lastnameTeacher
         dateCourse.text = myDataItem.dateDiffusion
 
     }

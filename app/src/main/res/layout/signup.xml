@@ -60,18 +60,6 @@
             android:layout_height="wrap_content"
             android:inputType="text"/>
 
-        <TextView
-            android:id="@+id/labelEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:layout_marginTop="10dp"/>
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
 
         <TextView
             android:id="@+id/labelPassword"

@@ -40,12 +40,6 @@ class Signin : AppCompatActivity() {
 
         buttonLogin.setOnClickListener {
             login()
-            val test = findViewById<TextView>(R.id.errorMessage)
-            if(!test.text.isEmpty()){
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-
         }
 
     }
@@ -57,22 +51,25 @@ class Signin : AppCompatActivity() {
         request.password = password.text.toString().trim()
 
         val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
-        retro.login(request).enqueue(object : retrofit2.Callback<SignInResponse> {
-            override fun onResponse(
-                call: Call<SignInResponse>,
-                response: Response<SignInResponse>
-            ) {
+        retro.login(request).enqueue(object : retrofit2.Callback<SignInRequest> {
+            override fun onResponse(call: Call<SignInRequest>, response: Response<SignInRequest>){
                 val user = response.body()
-                if (response.code() != 200) {
+                if (response.isSuccessful) {
+                    errorMessage.setText("")
+                    val intent = Intent(this@Signin, MainActivity::class.java)
+                    intent.putExtra("idUser", user?.id)
+                    startActivity(intent)
+                }else{
                     errorMessage.setText("Login incorrect")
                 }
-
             }
 
-            override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
+            override fun onFailure(call: Call<SignInRequest>, t: Throwable) {
                 Log.e("Error", "Message :" + t.message)
             }
 
         })
+
     }
+
 }

@@ -20,5 +20,9 @@ data class MyDataItem(
     @SerializedName("lien_diffusion")
     val lienDiffusion: Any,
     @SerializedName("niveauId")
-    val niveauId: String
+    val niveauId: String,
+    @SerializedName("firstname")
+    val firstnameTeacher: String,
+    @SerializedName("lastname")
+    val lastnameTeacher: String
 )

@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.signin.*
 import kotlinx.android.synthetic.main.signup.*
 import kotlinx.android.synthetic.main.signup.password
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class Signup: AppCompatActivity() {
@@ -38,12 +39,6 @@ class Signup: AppCompatActivity() {
 
         buttonSignUp.setOnClickListener(){
             signup()
-            if(!username.text.isEmpty() && !password.text.isEmpty() && !lastname.text.isEmpty() && !firstname.text.isEmpty()) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }else{
-                Toast.makeText(applicationContext, "Please complete the fields", Toast.LENGTH_SHORT).show()
-            }
         }
 
     }
@@ -53,19 +48,30 @@ class Signup: AppCompatActivity() {
         val request = SignUpRequest()
         request.username = username.text.toString().trim()
         request.password = password.text.toString().trim()
+        val confirmPassword = confirmPassword.text.toString().trim()
         request.role = "ETUDIANT"
         request.lastname = lastname.text.toString().trim()
         request.firstname = firstname.text.toString().trim()
 
         val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
-        retro.signup(request).enqueue(object : retrofit2.Callback<SignUpResponse>{
-            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                val user = response.body()
-
+        retro.signup(request).enqueue(object : Callback<SignUpRequest> {
+            override fun onFailure(call: Call<SignUpRequest>, t: Throwable) {
+                Log.e("Error", "Message :" + t.message)
             }
 
-            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                Log.e("Error", "Message :" + t.message)
+            override fun onResponse(call: Call<SignUpRequest>, response: Response<SignUpRequest>) {
+                val user = response.body()
+                if(!username.text.isEmpty() && !password.text.isEmpty() && !lastname.text.isEmpty() && !firstname.text.isEmpty()) {
+                    if(request.password == confirmPassword){
+                        val intent = Intent(this@Signup, MainActivity::class.java)
+                        startActivity(intent)
+                    }else{
+                        Toast.makeText(applicationContext, "Password not match", Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    Toast.makeText(applicationContext, "Please complete the fields", Toast.LENGTH_SHORT).show()
+                }
+
             }
 
         })
