@@ -1,5 +1,6 @@
 package com.example.schoovid_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,9 +23,10 @@ class InfoCourse : AppCompatActivity() {
         val participantId = intent.getStringExtra("userId")
 
         courseName.text = intent.getStringExtra("CourseName")
-        teacherName.text = intent.getStringExtra("FirstnameTeacher") + " " + intent.getStringExtra("LastnameTeacher")
+        teacherName.text = "Name teacher : " +intent.getStringExtra("FirstnameTeacher") + " " + intent.getStringExtra("LastnameTeacher")
         description.text = intent.getStringExtra("Description")
-        date.text = intent.getStringExtra("Date")
+        val newDate = intent.getStringExtra("Date")?.replace("T", " ")
+        date.text = "Date : " + newDate?.replace(".000Z", "")
 
         //Log.e("TAG", courseId.toString())
         //Log.e("TAG", userId.toString())
@@ -61,9 +63,6 @@ class InfoCourse : AppCompatActivity() {
         request.courseId = courseId
         request.participantId = participantId
 
-        Log.e("CourseId", request.courseId.toString())
-        Log.e("ParticipantId", request.participantId.toString())
-
         val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
         retro.registerCourse(request).enqueue(object : retrofit2.Callback<RegisterCourseRequest> {
             override fun onResponse(call: Call<RegisterCourseRequest>, response: Response<RegisterCourseRequest>){
@@ -71,6 +70,8 @@ class InfoCourse : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Log.e("TAG", "test")
                     btnRegistration.setVisibility(View.INVISIBLE)
+                    /*val intent = Intent(this@InfoCourse, Signin::class.java)
+                    startActivity(intent)*/
                 }else{
                     Log.e("Erreur", "Not register")
                 }

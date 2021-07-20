@@ -1,4 +1,4 @@
-package com.example.callapi
+package com.example.schoovid_app.Request
 
 import com.google.gson.annotations.SerializedName
 

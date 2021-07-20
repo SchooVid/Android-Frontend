@@ -1,6 +1,8 @@
 package com.example.loginapi
 
-import com.example.callapi.MyDataItem
+import com.example.loginapi.Request.DataCreateCoursePropose
+import com.example.schoovid_app.Request.DataCoursePropose
+import com.example.schoovid_app.Request.MyDataItem
 import com.example.loginapi.Request.RegisterCourseRequest
 import com.example.loginapi.Request.SignInRequest
 import com.example.loginapi.Request.SignUpRequest
@@ -21,12 +23,20 @@ interface UserApi {
         @Body signInRequest: SignInRequest
     ):Call<SignInRequest>
 
-    @GET("course/all")
-    fun getData(): Call<MutableList<MyDataItem>>
+    @POST("proposed_course/create")
+    fun createCoursePropose(
+        @Body dataCreateCoursePropose: DataCreateCoursePropose
+    ):Call<DataCreateCoursePropose>
 
     @POST("course_participant/add")
     fun registerCourse(
         @Body registerCourseRequest: RegisterCourseRequest
     ):Call<RegisterCourseRequest>
+
+    @GET("course/all")
+    fun getCourse(): Call<MutableList<MyDataItem>>
+
+    @GET("proposed_course/all")
+    fun getCoursePropose(): Call<MutableList<DataCoursePropose>>
 
 }
