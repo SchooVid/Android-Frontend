@@ -63,7 +63,8 @@ class Signup: AppCompatActivity() {
                 val user = response.body()
                 if(!username.text.isEmpty() && !password.text.isEmpty() && !lastname.text.isEmpty() && !firstname.text.isEmpty()) {
                     if(request.password == confirmPassword){
-                        val intent = Intent(this@Signup, MainActivity::class.java)
+                        Toast.makeText(applicationContext, "Your account has been created", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@Signup, Signin::class.java)
                         startActivity(intent)
                     }else{
                         Toast.makeText(applicationContext, "Password not match", Toast.LENGTH_SHORT).show()

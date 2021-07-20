@@ -29,6 +29,10 @@
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".InfoCourse"
             android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".ListCoursePropose"
+            android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".AddCoursePropose"
+            android:theme="@style/Theme.AppCompat.Light"/>
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@ class TabPageAdapter(activity: FragmentActivity, private val tabCount: Int, val 
 
             0 -> HomeFragment(userId)
             1 -> CalendarFragment()
-            2 -> CourseFragment()
+            2 -> CourseFragment(userId)
             else -> HomeFragment(userId)
 
         }

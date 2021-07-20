@@ -1,18 +1,12 @@
 package com.example.schoovid_app
 
-import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.callapi.MyDataItem
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
+import com.example.schoovid_app.Request.MyDataItem
 
 class PostAdapter(val myDataItem: MutableList<MyDataItem>, var clickListener: onCourseItemClickListener): RecyclerView.Adapter<Adapter>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter {
@@ -44,9 +38,8 @@ class Adapter(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindView(myDataItem: MyDataItem){
 
         courseName.text = myDataItem.libelle
-        //teacherName.text = myDataItem.description
         teacherName.text = myDataItem.firstnameTeacher + " " + myDataItem.lastnameTeacher
-        dateCourse.text = myDataItem.dateDiffusion
+        dateCourse.text = dateFormating(myDataItem.dateDiffusion)
 
     }
 
@@ -55,6 +48,16 @@ class Adapter(itemView: View) : RecyclerView.ViewHolder(itemView) {
             action.onItemClick(item, adapterPosition)
         }
     }
+
+    fun dateFormating(date:String) : String{
+
+        var dateFormat = date.replace("T", " ")
+        val newDate = dateFormat.replace(".000Z", "")
+
+        return newDate
+
+    }
+
 }
 
 interface onCourseItemClickListener{
