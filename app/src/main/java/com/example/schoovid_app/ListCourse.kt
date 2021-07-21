@@ -57,7 +57,13 @@ class ListCourse : AppCompatActivity(), onCourseItemClickListener{
     override fun onItemClick(myDataItem: MyDataItem, position: Int) {
         val userId = intent.getStringExtra("userId")
         val intent = Intent(this, InfoCourse::class.java)
+        intent.putExtra("Id", myDataItem.id)
         intent.putExtra("userId", userId)
+        intent.putExtra("CourseName", myDataItem.libelle)
+        intent.putExtra("FirstnameTeacher", myDataItem.firstnameTeacher)
+        intent.putExtra("LastnameTeacher", myDataItem.lastnameTeacher)
+        intent.putExtra("Description", myDataItem.description)
+        intent.putExtra("Date", myDataItem.dateDiffusion)
         startActivity(intent)
     }
 }

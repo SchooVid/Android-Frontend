@@ -59,7 +59,10 @@ class ListCoursePropose: AppCompatActivity(), onCourseProposeItemClickListener{
     }
 
     override fun onItemClick(dataCoursePropose: DataCoursePropose, position: Int) {
-
+        val intent = Intent(this, Pop::class.java)
+        intent.putExtra("nameCourse", dataCoursePropose.libelle)
+        intent.putExtra("courseId", dataCoursePropose.id)
+        startActivity(intent)
     }
 
     fun clickCreateCourse(view: View) {
