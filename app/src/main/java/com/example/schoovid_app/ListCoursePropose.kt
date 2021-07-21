@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.schoovid_app.Request.DataCoursePropose
 import com.example.callapi.ServiceGenerator
 import com.example.loginapi.UserApi
+import com.example.schoovid_app.Fragment.CourseFragment
 import kotlinx.android.synthetic.main.list_course_propose.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,8 +46,6 @@ class ListCoursePropose: AppCompatActivity(), onCourseProposeItemClickListener{
 
         })
 
-        Log.e("TAG", intent.getStringExtra("userId").toString())
-
         val actionbar = supportActionBar
 
         actionbar!!.setDisplayHomeAsUpEnabled(true)
@@ -69,6 +68,7 @@ class ListCoursePropose: AppCompatActivity(), onCourseProposeItemClickListener{
         btnAddCourse.setOnClickListener {
             val userId = intent.getStringExtra("userId")
             val intent = Intent(this, AddCoursePropose::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             intent.putExtra("userId", userId)
             startActivity(intent)
         }
