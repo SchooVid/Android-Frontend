@@ -24,15 +24,23 @@
             android:theme="@style/Theme.AppCompat.Light"
             android:label="@string/signup"/>
         <activity android:name=".MainActivity"
+            android:label="Home"
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".ListCourse"
+            android:label="Liste Course"
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".InfoCourse"
+            android:label="Info Course"
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".ListCoursePropose"
+            android:label="List Course Propose"
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".AddCoursePropose"
+            android:label="Add Course Propose"
             android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".Pop"
+            android:label="Delete Course"
+            android:theme="@style/CustomTheme"/>
     </application>
 
 </manifest>

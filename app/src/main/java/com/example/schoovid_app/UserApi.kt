@@ -1,13 +1,11 @@
 package com.example.loginapi
 
-import com.example.loginapi.Request.DataCreateCoursePropose
+import com.example.loginapi.Request.*
 import com.example.schoovid_app.Request.DataCoursePropose
 import com.example.schoovid_app.Request.MyDataItem
-import com.example.loginapi.Request.RegisterCourseRequest
-import com.example.loginapi.Request.SignInRequest
-import com.example.loginapi.Request.SignUpRequest
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -39,4 +37,6 @@ interface UserApi {
     @GET("proposed_course/all")
     fun getCoursePropose(): Call<MutableList<DataCoursePropose>>
 
+    /*@DELETE("proposed_course/")
+    suspend fun deleteCoursePropose(id:String)*/
 }
