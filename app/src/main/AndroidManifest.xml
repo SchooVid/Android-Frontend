@@ -41,6 +41,8 @@
         <activity android:name=".Pop"
             android:label="Delete Course"
             android:theme="@style/CustomTheme"/>
+        <activity android:name=".StreamChat"
+            android:theme="@style/Theme.AppCompat.Light"/>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import com.example.loginapi.Request.DataCreateCoursePropose
 import com.example.loginapi.Request.SignInRequest
 import com.example.loginapi.Retro
 import com.example.loginapi.UserApi
+import com.example.schoovid_app.Fragment.CourseFragment
 import kotlinx.android.synthetic.main.add_course_propose.*
 import kotlinx.android.synthetic.main.signin.*
 import retrofit2.Call
@@ -35,7 +36,6 @@ class AddCoursePropose : AppCompatActivity() {
         return true
     }
 
-
     fun initAction(){
 
         createCourse.setOnClickListener {
@@ -57,6 +57,7 @@ class AddCoursePropose : AppCompatActivity() {
                 val user = response.body()
                 if (response.isSuccessful) {
                     val intent = Intent(this@AddCoursePropose, ListCoursePropose::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                 }else{
                     Toast.makeText(applicationContext, "Course don't create", Toast.LENGTH_SHORT).show()

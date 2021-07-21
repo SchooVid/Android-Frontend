@@ -42,6 +42,11 @@ class InfoCourse : AppCompatActivity() {
             }
         }
 
+        btnJoinStream.setOnClickListener {
+            val intent = Intent(this, StreamChat::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
