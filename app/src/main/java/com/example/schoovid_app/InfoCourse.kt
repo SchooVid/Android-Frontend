@@ -3,19 +3,99 @@ package com.example.schoovid_app
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.loginapi.Request.RegisterCourseRequest
 import com.example.loginapi.Retro
 import com.example.loginapi.UserApi
+import com.example.schoovid_app.Request.MyDataItem
 import kotlinx.android.synthetic.main.info_course.*
 import kotlinx.android.synthetic.main.signin.*
 import kotlinx.android.synthetic.main.signup.*
 import retrofit2.Call
 import retrofit2.Response
 
-class InfoCourse : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+//class InfoCourse : AppCompatActivity() {
+class InfoCourse : Fragment(){
+
+    /*companion object {
+        fun newInstance(myDataItem: MyDataItem) : InfoCourse {
+            val fragment = InfoCourse()
+            val args = Bundle()
+            args.putString("courseId", myDataItem.id)
+            args.putString("nameCourse", myDataItem.libelle)
+            args.putString("firstname", myDataItem.firstnameTeacher)
+            args.putString("lastname", myDataItem.lastnameTeacher)
+            args.putString("date", myDataItem.dateDiffusion)
+            args.putString("description", myDataItem.description)
+            fragment.arguments = args
+            return fragment
+        }
+    }*/
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.info_course, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //(activity as AppCompatActivity).supportActionBar?.title = "List of course"
+        (activity as AppCompatActivity).supportActionBar?.hide()
+
+        val userId = arguments?.getString("userId")
+        Log.e("TAG456", userId.toString())
+
+        val courseId = arguments?.getString("courseId")
+        Log.e("TAG456", courseId.toString())
+
+        val course = arguments?.getString("courseName")
+        val courseName:TextView = view.findViewById(R.id.courseName)
+        courseName.text = course.toString()
+
+        val firstname = arguments?.getString("firstname")
+        val lastname = arguments?.getString("lastname")
+        val fullname = "$firstname $lastname"
+        Log.e("TAG", fullname)
+        val teacherName:TextView = view.findViewById(R.id.teacherName)
+        teacherName.text = fullname
+
+        val date = arguments?.getString("date")?.replace("T", " ")?.replace(".000Z", "")
+        val dateStream:TextView = view.findViewById(R.id.date)
+        dateStream.text = date.toString()
+
+        val desc = arguments?.getString("description")
+        val description:TextView = view.findViewById(R.id.description)
+        description.text = desc.toString()
+
+        initAction(courseId.toString(), userId.toString())
+
+        btnBack.setOnClickListener {
+
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.container1, ListCourse())
+                .commitAllowingStateLoss()
+
+        }
+
+    }
+
+    /*override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        /*val title = arguments?.getString("nameCourse")
+        Log.e("TAG", title.toString())*/
+
+    }*/
+
+    /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.info_course)
 
@@ -47,10 +127,20 @@ class InfoCourse : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
+    }*/
 
-    override fun onSupportNavigateUp(): Boolean {
+    /*override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
+        return true
+    }*/
+
+    fun onBackPressed(): Boolean{
+
+        parentFragmentManager
+            .beginTransaction()
+            .replace(R.id.container1, ListCourse())
+            .commitAllowingStateLoss()
+
         return true
     }
 

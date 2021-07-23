@@ -9,6 +9,12 @@
     android:padding="10dp"
     android:layout_margin="20dp">
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"/>
+
     <TextView
         android:id="@+id/courseName"
         android:layout_width="match_parent"

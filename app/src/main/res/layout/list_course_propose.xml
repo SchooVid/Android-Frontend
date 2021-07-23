@@ -21,7 +21,6 @@
         app:backgroundTint="@color/green"
         app:elevation="6dp"
         app:fabSize="normal"
-        android:src="@drawable/ic_baseline_add_24"
-        android:onClick="clickCreateCourse"/>
+        android:src="@drawable/ic_baseline_add_24"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
