@@ -1,7 +1,9 @@
 package com.example.loginapi
 
 import com.example.loginapi.Request.*
+import com.example.schoovid_app.DataCategory
 import com.example.schoovid_app.Request.DataCoursePropose
+import com.example.schoovid_app.Request.DataLevel
 import com.example.schoovid_app.Request.MyDataItem
 import retrofit2.Call
 import retrofit2.http.*
@@ -28,11 +30,24 @@ interface UserApi {
         @Body registerCourseRequest: RegisterCourseRequest
     ):Call<RegisterCourseRequest>
 
+    @POST("course_participant/one")
+    fun compareRegister(
+        @Body registerCourseRequest: RegisterCourseRequest
+    ):Call<Boolean>
+
     @GET("course/all")
     fun getCourse(): Call<MutableList<MyDataItem>>
 
     @GET("proposed_course/all")
     fun getCoursePropose(): Call<MutableList<DataCoursePropose>>
+
+    // Route get all category : /course_category
+    @GET("/course_category/")
+    fun getCategory(): Call<MutableList<DataCategory>>
+
+    // Route get all level : /course_level
+    @GET("/course_level/")
+    fun getLevel(): Call<MutableList<DataLevel>>
 
     @DELETE("proposed_course/{id}")
     fun deleteCoursePropose(@Path("id") id: String): Call<Unit>

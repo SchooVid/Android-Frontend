@@ -5,11 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.HomeFragment">
 
-    <Button
+    <!--<Button
         android:id="@+id/btnListCourse"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Get Course"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"/>-->
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

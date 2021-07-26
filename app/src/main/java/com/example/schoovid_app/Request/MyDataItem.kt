@@ -24,5 +24,9 @@ data class MyDataItem(
     @SerializedName("firstname")
     val firstnameTeacher: String,
     @SerializedName("lastname")
-    val lastnameTeacher: String
+    val lastnameTeacher: String,
+    @SerializedName("level")
+    val level: String,
+    @SerializedName("category")
+    val category: String
 )

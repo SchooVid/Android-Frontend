@@ -9,6 +9,13 @@
     android:padding="10dp"
     android:layout_margin="20dp">
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:background="@color/green"/>
+
     <TextView
         android:id="@+id/courseName"
         android:layout_width="match_parent"
@@ -23,12 +30,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Teacher"
-        android:textSize="15dp"
         android:textAlignment="textStart"
         android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/level"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"/>
@@ -53,13 +71,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:background="@color/green"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btnJoinStream"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Join stream"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/green"/>
 
 </LinearLayout>
