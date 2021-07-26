@@ -17,4 +17,12 @@ class DataCreateCoursePropose {
     @Expose
     var userId:String? = null
 
+    @SerializedName("niveauId")
+    @Expose
+    var niveauId:String? = null
+
+    @SerializedName("categorieId")
+    @Expose
+    var categorieId:String? = null
+
 }

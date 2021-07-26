@@ -1,11 +1,12 @@
 package com.example.schoovid_app
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import com.example.callapi.ServiceGenerator
 import com.example.loginapi.UserApi
 import kotlinx.android.synthetic.main.popup_window.*
@@ -13,55 +14,47 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Pop : Activity(){
+class Pop : DialogFragment(){
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.popup_window)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        var rootView: View = inflater.inflate(R.layout.popup_window, container,false)
 
-        val dm:DisplayMetrics = DisplayMetrics()
-        windowManager.getDefaultDisplay().getMetrics(dm)
+        return rootView
+    }
 
-        val width = dm.widthPixels
-        val height = dm.heightPixels
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        getWindow().setLayout(width/1,height/3)
-
-        val courseId = intent.getStringExtra("courseId")
-        val courseName = intent.getStringExtra("nameCourse")
+        val args = arguments
+        val courseName = args!!.getString("courseName")
+        val courseId = args!!.getString("courseId")
 
         nameCourse.text = "You want to delete " + courseName + " ?"
 
-        action(courseId.toString())
-    }
-
-    fun action(courseId: String){
         btnDelete.setOnClickListener {
             val serviceGenerator = ServiceGenerator.buildService(UserApi::class.java)
-            val call = serviceGenerator.deleteCoursePropose(courseId)
+            val call = serviceGenerator.deleteCoursePropose(courseId!!)
 
             call.enqueue(object: Callback<Unit>{
 
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
-                    Log.e("Error", t.localizedMessage)
+                    Log.e("Error", t.message.toString())
                 }
 
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
 
                     if(response.isSuccessful){
-                        Toast.makeText(applicationContext, "Course is delete", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@Pop, ListCoursePropose::class.java)
-                        startActivity(intent)
+                        Toast.makeText(view.context, "Course is delete", Toast.LENGTH_SHORT).show()
+                        dismiss()
+                        parentFragmentManager
+                            .beginTransaction()
+                            .replace(R.id.containerCoursePropose, ListCoursePropose())
+                            .commitAllowingStateLoss()
                     }else{
-                        Toast.makeText(applicationContext, "Course not delete", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(view.context, "Course not delete", Toast.LENGTH_SHORT).show()
                     }
                 }
-
             })
-        }
-        btnCancel.setOnClickListener {
-            val intent = Intent(this@Pop, ListCoursePropose::class.java)
-            startActivity(intent)
         }
     }
 }
