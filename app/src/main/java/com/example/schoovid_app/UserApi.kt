@@ -49,6 +49,6 @@ interface UserApi {
     @GET("/course_level/")
     fun getLevel(): Call<MutableList<DataLevel>>
 
-    @DELETE("proposed_course/{id}")
+    @DELETE("proposed_course/")
     fun deleteCoursePropose(@Path("id") id: String): Call<Unit>
 }
